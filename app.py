@@ -1,3 +1,47 @@
+import streamlit as st
+import pandas as pd
+from databricks import sql
+
+# -----------------------------
+# Databricks Connection
+# -----------------------------
+connection = sql.connect(
+    server_hostname="dbc-c6ae1a55-0fea.cloud.databricks.com",
+    http_path="/sql/1.0/warehouses/6f44597591149c56",
+    access_token="dapib6fdbda421fec8fc77abc08eff6fdbaa"
+)
+
+cursor = connection.cursor()
+
+cursor.execute("""
+SELECT
+    employee_id,
+    employee_name,
+    department,
+    location,
+    experience,
+    project,
+    salary
+FROM demo.employee_master
+""")
+
+rows = cursor.fetchall()
+
+columns = [
+    "employee_id",
+    "employee_name",
+    "department",
+    "location",
+    "experience",
+    "project",
+    "salary"
+]
+
+df = pd.DataFrame(rows, columns=columns)
+
+cursor.close()
+connection.close()
+
 # -----------------------------
 # Streamlit UI
 # -----------------------------
