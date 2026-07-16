@@ -8,7 +8,7 @@ from databricks import sql
 connection = sql.connect(
     server_hostname="dbc-c6ae1a55-0fea.cloud.databricks.com",
     http_path="/sql/1.0/warehouses/6f44597591149c56",
-    access_token="dapib6fdbda421fec8fc77abc08eff6fdbaa"
+    access_token="dapibf256a76678a593e11e7eceeacfeeef2"
 )
 
 cursor = connection.cursor()
